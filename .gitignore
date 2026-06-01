@@ -1,42 +1,107 @@
-# Python
+# Byte-compiled / optimized / DLL files
 __pycache__/
-*.py[cod]
-*.pyo
-*.pyd
+*.py[codz]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
 .Python
-*.egg-info/
-dist/
 build/
+develop-eggs/
+dist/
+downloads/
+eggs/
 .eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
 
-# Virtual env
-.venv/
-venv/
-env/
+# PyInstaller
+*.manifest
+*.spec
 
-# Secrets
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py.cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Translations
+*.mo
+*.pot
+
+# Logs
+*.log
+
+# Environments
 .env
+.envrc
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
 
-# Data / uploads
-data/
-logs/
-/tmp/
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
 
-# Vector store local
-*.qdrant
+# Ruff
+.ruff_cache/
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# Redis
+*.rdb
+*.aof
+*.pid
+
+# OS
+.DS_Store
+Thumbs.db
 
 # IDE
 .vscode/
 .idea/
 *.swp
 
-# OS
-.DS_Store
-Thumbs.db
+# Project-specific
+data/
+logs/
+/tmp/
+*.qdrant
+catalogo_patito_limpio.txt
 
 # Claude / SDD
 .atl/
 .claude/
 
-# Legacy gitignore file
+# Legacy
 gitignore.txt
