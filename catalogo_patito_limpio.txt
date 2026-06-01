@@ -1,0 +1,397 @@
+CATÁLOGO DE PRODUCTOS - PATITO LIMPIO
+======================================
+Empresa: Patito Limpio S.A.
+Rubro: Productos de Limpieza del Hogar y Profesional
+Sitio web: www.patitolimpio.com.ar
+Teléfono: 0800-333-PATITO
+Email: ventas@patitolimpio.com.ar
+
+--------------------------------------
+LÍNEA HOGAR
+--------------------------------------
+
+1. PATITO CLÁSICO LAVANDINA CONCENTRADA
+   Código: PL-001
+   Descripción: Lavandina concentrada al 55 g/L de cloro activo. Ideal para desinfección de superficies, baños y cocinas.
+   Presentaciones: 1 L / 2 L / 5 L
+   Fragancia: Sin perfume
+   Precio sugerido: $1.200 (1 L)
+
+2. PATITO LAVANDINA FLORAL
+   Código: PL-002
+   Descripción: Lavandina con fragancia floral. Desinfecta y deja un aroma agradable en toda la casa.
+   Presentaciones: 1 L / 2 L
+   Fragancia: Flores blancas
+   Precio sugerido: $1.350 (1 L)
+
+3. PATITO LAVANDINA LIMÓN
+   Código: PL-003
+   Descripción: Lavandina con fragancia cítrica. Elimina el 99.9% de bacterias y gérmenes.
+   Presentaciones: 1 L / 2 L
+   Fragancia: Limón
+   Precio sugerido: $1.350 (1 L)
+
+4. PATITO DESENGRASANTE COCINA
+   Código: PL-004
+   Descripción: Desengrasante de alta potencia para hornallas, mesadas y campanas. Actúa en segundos sin restregar.
+   Presentaciones: 500 mL (gatillo) / 1 L (repuesto)
+   Fragancia: Naranja
+   Precio sugerido: $1.800 (500 mL)
+
+5. PATITO LIMPIAVIDRIOS
+   Código: PL-005
+   Descripción: Fórmula sin rayas para vidrios, espejos y superficies brillantes. Secado rápido.
+   Presentaciones: 500 mL (gatillo) / 1 L (repuesto)
+   Fragancia: Menta
+   Precio sugerido: $1.600 (500 mL)
+
+6. PATITO QUITASARRO BAÑO
+   Código: PL-006
+   Descripción: Elimina el sarro y la cal de canillas, duchas e inodoros. Fórmula ácida de acción rápida.
+   Presentaciones: 500 mL (gatillo)
+   Fragancia: Pino
+   Precio sugerido: $1.900 (500 mL)
+
+7. PATITO GEL LIMPIAINODOROS
+   Código: PL-007
+   Descripción: Gel espeso para limpieza bajo el aro del inodoro. Desinfecta y desodoriza con cada uso.
+   Presentaciones: 750 mL
+   Fragancia: Marine
+   Precio sugerido: $1.500 (750 mL)
+
+8. PATITO PASTILLA INODORO AZUL
+   Código: PL-008
+   Descripción: Pastilla para mochila del inodoro. Limpia y desinfecta con cada descarga. Duración 30 días.
+   Presentaciones: Caja x 2 unidades
+   Fragancia: Lavanda
+   Precio sugerido: $900 (x2)
+
+9. PATITO LIMPIADOR MULTIUSO FLORAL
+   Código: PL-009
+   Descripción: Limpiador líquido apto para todas las superficies del hogar. No requiere enjuague.
+   Presentaciones: 500 mL (gatillo) / 1 L / 5 L
+   Fragancia: Floral
+   Precio sugerido: $1.400 (500 mL)
+
+10. PATITO LIMPIADOR MULTIUSO LAVANDA
+    Código: PL-010
+    Descripción: Misma fórmula multiuso con fragancia relajante de lavanda. Ideal para dormitorios y living.
+    Presentaciones: 500 mL (gatillo) / 1 L
+    Fragancia: Lavanda
+    Precio sugerido: $1.400 (500 mL)
+
+11. PATITO DESODORANTE AMBIENTE SPRAY
+    Código: PL-011
+    Descripción: Elimina olores y perfuma el ambiente por hasta 4 horas. Fórmula antibacterial.
+    Presentaciones: 360 mL aerosol
+    Fragancia: Talco / Lavanda / Cítrico (a elección)
+    Precio sugerido: $2.100 (360 mL)
+
+12. PATITO JABÓN LÍQUIDO MANOS
+    Código: PL-012
+    Descripción: Jabón líquido suave para manos. pH balanceado, con glicerina. Apto para uso frecuente.
+    Presentaciones: 300 mL (dispensador) / 1 L (repuesto)
+    Fragancia: Almendras
+    Precio sugerido: $1.100 (300 mL)
+
+13. PATITO JABÓN LÍQUIDO ANTIBACTERIAL
+    Código: PL-013
+    Descripción: Jabón líquido con agentes antibacteriales. Elimina el 99.9% de gérmenes en 30 segundos.
+    Presentaciones: 300 mL (dispensador) / 1 L (repuesto)
+    Fragancia: Limón fresco
+    Precio sugerido: $1.300 (300 mL)
+
+14. PATITO SUAVIZANTE CONCENTRADO PRIMAVERA
+    Código: PL-014
+    Descripción: Suavizante para ropa concentrado. Rinde hasta 40 lavados por litro. Deja la ropa suave y perfumada.
+    Presentaciones: 1 L / 3 L / 5 L
+    Fragancia: Primavera
+    Precio sugerido: $2.500 (1 L)
+
+15. PATITO SUAVIZANTE CONCENTRADO BEBÉ
+    Código: PL-015
+    Descripción: Fórmula hipoalergénica para ropa de bebés y pieles sensibles. Sin colorantes agresivos.
+    Presentaciones: 1 L / 3 L
+    Fragancia: Suave / Talco
+    Precio sugerido: $2.800 (1 L)
+
+16. PATITO DETERGENTE LAVAVAJILLAS LIMÓN
+    Código: PL-016
+    Descripción: Detergente concentrado para vajilla. Corta la grasa y protege las manos. Rinde hasta 200 lavados.
+    Presentaciones: 500 mL / 1 L / 3 L
+    Fragancia: Limón
+    Precio sugerido: $1.200 (500 mL)
+
+17. PATITO DETERGENTE LAVAVAJILLAS MANZANA
+    Código: PL-017
+    Descripción: Misma fórmula lavavajillas con fragancia de manzana verde. Alta espuma.
+    Presentaciones: 500 mL / 1 L
+    Fragancia: Manzana verde
+    Precio sugerido: $1.200 (500 mL)
+
+18. PATITO LIMPIA PISOS CLÁSICO
+    Código: PL-018
+    Descripción: Limpiador para pisos cerámicos, porcellanato y mármol. No deja marcas ni residuos.
+    Presentaciones: 1 L / 3 L / 5 L
+    Fragancia: Pino
+    Precio sugerido: $1.600 (1 L)
+
+19. PATITO LIMPIA PISOS LAVANDA
+    Código: PL-019
+    Descripción: Limpiador de pisos con fragancia larga duración. Ideal para dormitorios y pasillos.
+    Presentaciones: 1 L / 3 L
+    Fragancia: Lavanda
+    Precio sugerido: $1.600 (1 L)
+
+20. PATITO CERA PISOS BRILLANTE
+    Código: PL-020
+    Descripción: Cera líquida autonivelante para pisos de madera y vinílicos. Protege y da brillo duradero.
+    Presentaciones: 1 L
+    Fragancia: Neutro
+    Precio sugerido: $3.200 (1 L)
+
+--------------------------------------
+LÍNEA PROFESIONAL
+--------------------------------------
+
+21. PATITO PRO DESENGRASANTE INDUSTRIAL
+    Código: PP-001
+    Descripción: Desengrasante alcalino de alta concentración para cocinas industriales y superficies muy sucias. Dilución 1:10.
+    Presentaciones: 5 L / 10 L / 20 L
+    Fragancia: Neutro
+    Precio sugerido: $8.500 (5 L)
+
+22. PATITO PRO DESINFECTANTE HOSPITALARIO
+    Código: PP-002
+    Descripción: Desinfectante de amplio espectro aprobado por ANMAT. Elimina virus, bacterias y hongos.
+    Presentaciones: 1 L / 5 L
+    Fragancia: Neutro
+    Precio sugerido: $6.000 (1 L)
+
+23. PATITO PRO LAVANDINA INDUSTRIAL 10%
+    Código: PP-003
+    Descripción: Lavandina de alta concentración al 10% de cloro activo. Para uso en plantas de alimentos y hospitales.
+    Presentaciones: 5 L / 20 L
+    Fragancia: Sin perfume
+    Precio sugerido: $7.200 (5 L)
+
+24. PATITO PRO LIMPIADOR ACERO INOXIDABLE
+    Código: PP-004
+    Descripción: Limpia, desgrasa y protege superficies de acero inoxidable. Sin rayas. Ideal para gastronomía.
+    Presentaciones: 500 mL / 1 L
+    Fragancia: Neutro
+    Precio sugerido: $3.500 (500 mL)
+
+25. PATITO PRO DETERGENTE ENZIMÁTICO
+    Código: PP-005
+    Descripción: Detergente con enzimas para limpieza de instrumental médico y quirúrgico. Compatible con autoclave.
+    Presentaciones: 1 L / 5 L
+    Fragancia: Neutro
+    Precio sugerido: $9.000 (1 L)
+
+26. PATITO PRO QUITAMANCHAS ROPA
+    Código: PP-006
+    Descripción: Quitamanchas en polvo oxigenado para uso en lavanderías y hoteles. Apto para agua fría y caliente.
+    Presentaciones: 1 kg / 5 kg / 10 kg
+    Fragancia: Neutro
+    Precio sugerido: $4.500 (1 kg)
+
+27. PATITO PRO DECAPANTE PISOS
+    Código: PP-007
+    Descripción: Elimina ceras y polímeros viejos de pisos vinílicos y cerámicos. Preparación para re-encerado.
+    Presentaciones: 1 L / 5 L
+    Fragancia: Neutro
+    Precio sugerido: $5.500 (1 L)
+
+28. PATITO PRO CERA ANTIDESLIZANTE
+    Código: PP-008
+    Descripción: Cera polimérica para pisos de alto tránsito. Propiedades antideslizantes certificadas.
+    Presentaciones: 5 L / 20 L
+    Fragancia: Neutro
+    Precio sugerido: $12.000 (5 L)
+
+29. PATITO PRO LIMPIA TAPIZADOS
+    Código: PP-009
+    Descripción: Espuma limpiadora para tapizados de tela, cuero y microfibra. Sin humedad excesiva.
+    Presentaciones: 400 mL aerosol
+    Fragancia: Neutro
+    Precio sugerido: $4.200 (400 mL)
+
+30. PATITO PRO DESODORANTE INDUSTRIAL
+    Código: PP-010
+    Descripción: Neutralizador de olores para grandes espacios. Apto para uso en nebulizadoras.
+    Presentaciones: 1 L / 5 L
+    Fragancia: Marine / Cítrico
+    Precio sugerido: $5.000 (1 L)
+
+--------------------------------------
+LÍNEA ECO
+--------------------------------------
+
+31. PATITO ECO LIMPIADOR MULTIUSO BIODEGRADABLE
+    Código: PE-001
+    Descripción: Fórmula 100% biodegradable a base de ingredientes vegetales. Sin fosfatos ni parabenos.
+    Presentaciones: 500 mL / 1 L
+    Fragancia: Naranja y romero
+    Precio sugerido: $2.200 (500 mL)
+
+32. PATITO ECO DETERGENTE LAVAVAJILLAS SÓLIDO
+    Código: PE-002
+    Descripción: Pastilla concentrada para lavar vajilla. Una pastilla = 500 mL de detergente líquido. Zero plástico.
+    Presentaciones: Caja x 20 pastillas
+    Fragancia: Limón
+    Precio sugerido: $3.500 (x20)
+
+33. PATITO ECO JABÓN EN BARRA MULTIUSOS
+    Código: PE-003
+    Descripción: Jabón natural vegetal para ropa, superficies y manos. Sin sulfatos. Dura 3 veces más que el líquido.
+    Presentaciones: Barra 300 g
+    Fragancia: Coco
+    Precio sugerido: $1.800 (300 g)
+
+34. PATITO ECO SUAVIZANTE NATURAL
+    Código: PE-004
+    Descripción: Suavizante a base de vinagre de manzana y aceites esenciales. Sin químicos agresivos.
+    Presentaciones: 1 L
+    Fragancia: Lavanda y eucalipto
+    Precio sugerido: $3.000 (1 L)
+
+35. PATITO ECO DESENGRASANTE CÍTRICO
+    Código: PE-005
+    Descripción: Desengrasante con extracto de cáscara de naranja. Efectivo en cocinas sin dañar el ambiente.
+    Presentaciones: 500 mL (gatillo) / 1 L (repuesto)
+    Fragancia: Naranja
+    Precio sugerido: $2.400 (500 mL)
+
+36. PATITO ECO LIMPIA BAÑOS VINAGRE
+    Código: PE-006
+    Descripción: Limpiador de baños con ácido acético natural. Disuelve el sarro sin cloro.
+    Presentaciones: 500 mL (gatillo)
+    Fragancia: Eucalipto
+    Precio sugerido: $2.200 (500 mL)
+
+37. PATITO ECO PASTILLA INODORO NATURAL
+    Código: PE-007
+    Descripción: Pastilla para inodoro con ingredientes naturales. Sin cloro. Biodegradable al 100%.
+    Presentaciones: Caja x 2 unidades
+    Fragancia: Menta y eucalipto
+    Precio sugerido: $1.200 (x2)
+
+38. PATITO ECO BOLSA BIODEGRADABLE BASURA 20 L
+    Código: PE-008
+    Descripción: Bolsas de residuos biodegradables certificadas OK Biobased. Se degradan en 180 días.
+    Presentaciones: Rollo x 15 unidades
+    Precio sugerido: $1.500 (x15)
+
+39. PATITO ECO BOLSA BIODEGRADABLE BASURA 60 L
+    Código: PE-009
+    Descripción: Bolsas grandes para residuos biodegradables. Resistencia reforzada. Certificación OK Biobased.
+    Presentaciones: Rollo x 10 unidades
+    Precio sugerido: $1.800 (x10)
+
+40. PATITO ECO ESPONJA VEGETAL
+    Código: PE-010
+    Descripción: Esponja fabricada con fibra de luffa natural. Reemplaza la esponja sintética. Compostable.
+    Presentaciones: Unidad
+    Precio sugerido: $900 (unidad)
+
+--------------------------------------
+LÍNEA ACCESORIOS Y COMPLEMENTOS
+--------------------------------------
+
+41. PATITO ESPONJA DOBLE FAZ CLÁSICA
+    Código: PA-001
+    Descripción: Esponja con cara suave y cara abrasiva. Apta para antiadherentes y superficies delicadas.
+    Presentaciones: Pack x 3 unidades
+    Precio sugerido: $800 (x3)
+
+42. PATITO ESPONJA ACERO INOXIDABLE
+    Código: PA-002
+    Descripción: Virulana de acero inoxidable, no se oxida. Ideal para ollas y sartenes de acero.
+    Presentaciones: Pack x 3 unidades
+    Precio sugerido: $700 (x3)
+
+43. PATITO TRAPO REJILLA MULTIUSO
+    Código: PA-003
+    Descripción: Trapo de rejilla de alta absorción. Lavable a máquina hasta 60 lavados.
+    Presentaciones: Pack x 3 unidades
+    Precio sugerido: $1.200 (x3)
+
+44. PATITO PAÑO MICROFIBRA
+    Código: PA-004
+    Descripción: Paño de microfibra ultra absorbente. Limpia sin dejar pelusa en vidrios y superficies brillantes.
+    Presentaciones: Pack x 2 unidades (30x30 cm)
+    Precio sugerido: $1.500 (x2)
+
+45. PATITO GUANTE LÁTEX TALLE S/M/L
+    Código: PA-005
+    Descripción: Guantes de látex reforzados para limpieza del hogar. Interior flocado, cómodo para uso prolongado.
+    Presentaciones: Par / caja x 12 pares
+    Precio sugerido: $600 (par)
+
+46. PATITO GUANTE NITRILO DESCARTABLE
+    Código: PA-006
+    Descripción: Guantes descartables de nitrilo sin polvo. Apto para uso en limpieza profesional y gastronomía.
+    Presentaciones: Caja x 100 unidades (talle M/L)
+    Precio sugerido: $5.500 (x100)
+
+47. PATITO BALDE CON ESCURRIDOR 10 L
+    Código: PA-007
+    Descripción: Balde plástico resistente con escurridor integrado de doble rodillo. Asa ergonómica.
+    Presentaciones: Unidad
+    Precio sugerido: $4.500 (unidad)
+
+48. PATITO MOPA MICROFIBRA
+    Código: PA-008
+    Descripción: Sistema de mopa con mango telescópico (80–130 cm) y cabezal de microfibra lavable.
+    Presentaciones: Kit completo
+    Precio sugerido: $8.900 (kit)
+
+49. PATITO CEPILLO BAÑO PLÁSTICO
+    Código: PA-009
+    Descripción: Cepillo para inodoro con porta-cepillo incluido. Cerdas resistentes de larga duración.
+    Presentaciones: Unidad
+    Precio sugerido: $1.800 (unidad)
+
+50. PATITO DISPENSADOR JABÓN PARED
+    Código: PA-010
+    Descripción: Dispensador de jabón líquido para pared. Capacidad 500 mL. Apto para baños públicos y cocinas.
+    Presentaciones: Unidad (blanco / gris)
+    Precio sugerido: $3.200 (unidad)
+
+51. PATITO ATOMIZADOR PLÁSTICO 500 mL
+    Código: PA-011
+    Descripción: Atomizador gatillo recargable. Cabezal ajustable: spray fino / chorro. Apto para dilución de productos concentrados.
+    Presentaciones: Unidad
+    Precio sugerido: $700 (unidad)
+
+52. PATITO PAPEL HIGIÉNICO INSTITUCIONAL
+    Código: PA-012
+    Descripción: Rollo de papel higiénico de 300 m para dispensadores institucionales. Hoja simple suave.
+    Presentaciones: Fardo x 8 rollos
+    Precio sugerido: $6.500 (x8)
+
+--------------------------------------
+CONDICIONES COMERCIALES
+--------------------------------------
+
+- Precios expresados en pesos argentinos (ARS), IVA no incluido.
+- Precios vigentes al 14/05/2026. Sujetos a modificación sin previo aviso.
+- Descuentos por volumen:
+    * Compras desde $50.000: 5% de descuento
+    * Compras desde $100.000: 10% de descuento
+    * Compras desde $200.000: 15% de descuento + flete bonificado
+- Entrega en 24/48 hs hábiles en AMBA. Interior según transportista.
+- Pedido mínimo: $15.000
+
+--------------------------------------
+CONTACTO DE VENTAS
+--------------------------------------
+
+Nombre: Patito Limpio S.A.
+Dirección: Av. Corrientes 1234, CABA, Argentina
+Teléfono: 0800-333-PATITO
+WhatsApp: +54 9 11 2345-6789
+Email: ventas@patitolimpio.com.ar
+Web: www.patitolimpio.com.ar
+Instagram: @patitolimpio

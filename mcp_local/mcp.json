@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "localrag": {
+      "command": "python",
+      "args": ["mcp_local/server.py"],
+      "cwd": ".",
+      "env": {
+        "API_URL": "http://localhost:8000"
+      }
+    }
+  }
+}

@@ -1,0 +1,58 @@
+schema: spec-driven
+
+context: |
+  Tech stack: Python 3.12, FastAPI 0.136.1, ChromaDB 0.5.23, sentence-transformers 3.3.1, MCP (stdio + SSE)
+  Architecture: REST API + vector store + MCP bridge. Auth dual: JWT (portal) + service key (agents).
+  Multi-model: colecciones por dims. Multi-proyecto: filtrado por metadata campo "proyecto".
+  Crawler: BeautifulSoup4 + requests. Formatos: PDF, DOCX, TXT.
+  Deployment: self-hosted, sin cloud ni suscripciones.
+
+strict_tdd: false
+
+testing:
+  strict_tdd: false
+  detected: "2026-05-14"
+  test_runner:
+    available: false
+    framework: null
+    command: null
+  layers:
+    unit: { available: false, tool: null }
+    integration: { available: false, tool: null }
+    e2e: { available: false, tool: null }
+  coverage:
+    available: false
+    command: null
+  quality_tools:
+    linter: { available: false, command: null }
+    type_checker: { available: false, command: null }
+    formatter: { available: false, command: null }
+  note: "No test runner detected. Strict TDD Mode unavailable."
+
+rules:
+  proposal:
+    - Include rollback plan for risky changes
+    - Identify affected modules (ingesta/, api/, mcp_local/)
+    - Preserve self-hosted constraint — no cloud dependencies
+  specs:
+    - Use Given/When/Then format for scenarios
+    - Use RFC 2119 keywords (MUST, SHALL, SHOULD, MAY)
+    - Specify multi-tenant isolation requirements explicitly
+  design:
+    - Include sequence diagrams for async flows
+    - Document architecture decisions with rationale
+    - Specify Docker/infra changes required
+  tasks:
+    - Group tasks by phase (infra, implementation, integration)
+    - Use hierarchical numbering (1.1, 1.2, etc.)
+    - Keep tasks small enough to complete in one session
+  apply:
+    - Follow existing patterns: snake_case, español para variables de dominio
+    - Preserve dual-auth pattern (JWT + service key)
+    - No cloud dependencies — all components must be self-hostable
+  verify:
+    - Manual smoke tests since no test runner exists
+    - Compare implementation against every spec scenario
+    - Verify Docker Compose brings up cleanly
+  archive:
+    - Warn before merging destructive deltas (large removals)

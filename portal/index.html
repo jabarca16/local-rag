@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LocalRAG — Portal Admin</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; background: #0f1117; color: #e2e8f0; min-height: 100vh; }
+    header { background: #1a1f2e; border-bottom: 1px solid #2d3748; padding: 1rem 2rem; display: flex; align-items: center; gap: 1rem; }
+    header h1 { font-size: 1.25rem; font-weight: 700; color: #63b3ed; }
+    #stats-bar { font-size: 0.85rem; color: #718096; }
+    main { max-width: 960px; margin: 2rem auto; padding: 0 1.5rem; display: grid; gap: 1.5rem; }
+    .card { background: #1a1f2e; border: 1px solid #2d3748; border-radius: 8px; padding: 1.5rem; }
+    .card h2 { font-size: 1rem; font-weight: 600; color: #90cdf4; margin-bottom: 1rem; }
+    label { display: block; font-size: 0.85rem; color: #a0aec0; margin-bottom: 0.4rem; }
+    input[type=text], input[type=number], select {
+      width: 100%; padding: 0.5rem 0.75rem; background: #0f1117;
+      border: 1px solid #2d3748; border-radius: 6px; color: #e2e8f0; font-size: 0.9rem;
+    }
+    input[type=file] { color: #a0aec0; font-size: 0.85rem; }
+    .row { display: flex; gap: 0.75rem; align-items: flex-end; flex-wrap: wrap; }
+    .row > * { flex: 1; min-width: 120px; }
+    .row > .btn-wrap { flex: 0 0 auto; }
+    button {
+      padding: 0.5rem 1.25rem; background: #2b6cb0; color: #fff;
+      border: none; border-radius: 6px; cursor: pointer; font-size: 0.9rem; font-weight: 500;
+      white-space: nowrap;
+    }
+    button:hover { background: #2c5282; }
+    button:disabled { background: #2d3748; cursor: not-allowed; color: #718096; }
+    button.danger { background: #c53030; }
+    button.danger:hover { background: #9b2c2c; }
+    button.secondary { background: #2d3748; }
+    button.secondary:hover { background: #4a5568; }
+    .result {
+      margin-top: 1rem; background: #0f1117; border: 1px solid #2d3748;
+      border-radius: 6px; padding: 0.75rem; font-size: 0.8rem;
+      color: #a0aec0; max-height: 260px; overflow-y: auto; white-space: pre-wrap;
+    }
+    .tags-input { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center;
+      background: #0f1117; border: 1px solid #2d3748; border-radius: 6px; padding: 0.4rem 0.6rem; min-height: 38px; }
+    .tag { background: #2b6cb0; color: #fff; border-radius: 4px; padding: 0.2rem 0.5rem;
+      font-size: 0.75rem; display: flex; align-items: center; gap: 0.3rem; }
+    .tag span { cursor: pointer; font-weight: 700; }
+    .tags-input input { border: none; background: transparent; color: #e2e8f0; outline: none;
+      font-size: 0.85rem; min-width: 80px; flex: 1; }
+    .hint { font-size: 0.75rem; color: #4a5568; margin-top: 0.3rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    th { text-align: left; color: #718096; padding: 0.4rem 0.5rem; border-bottom: 1px solid #2d3748; }
+    td { padding: 0.4rem 0.5rem; border-bottom: 1px solid #1a202c; vertical-align: middle; }
+    td button { padding: 0.2rem 0.6rem; font-size: 0.75rem; }
+    .badge { background: #2d3748; border-radius: 4px; padding: 0.15rem 0.4rem; font-size: 0.7rem; color: #90cdf4; margin-right: 0.2rem; }
+    #url-list { list-style: none; max-height: 200px; overflow-y: auto; margin-top: 0.75rem; }
+    #url-list li { display: flex; align-items: center; gap: 0.5rem; padding: 0.3rem 0; border-bottom: 1px solid #1a202c; font-size: 0.8rem; }
+    #url-list li input[type=checkbox] { accent-color: #63b3ed; }
+    .filter-bar { display: flex; gap: 0.75rem; margin-bottom: 1rem; align-items: flex-end; flex-wrap: wrap; }
+    .filter-bar > * { flex: 1; min-width: 140px; }
+    .filter-bar > .btn-wrap { flex: 0 0 auto; }
+    .estado-badge { display:inline-block; border-radius:4px; padding:0.15rem 0.5rem; font-size:0.72rem; font-weight:600; }
+    .estado-instalado { background:#276749; color:#9ae6b4; }
+    .estado-instalando { background:#744210; color:#fbd38d; }
+    .estado-disponible { background:#2d3748; color:#718096; }
+  </style>
+</head>
+<body>
+
+<!-- Login overlay -->
+<div id="login-overlay" style="display:flex; position:fixed; inset:0; background:#0f1117; align-items:center; justify-content:center; z-index:100">
+  <div style="background:#1a1f2e; border:1px solid #2d3748; border-radius:10px; padding:2rem; width:320px">
+    <h2 style="color:#63b3ed; margin-bottom:1.5rem; font-size:1.1rem">LocalRAG — Iniciar sesión</h2>
+    <label>Usuario</label>
+    <input type="text" id="login-user" style="width:100%;margin-bottom:0.75rem" />
+    <label>Contraseña</label>
+    <input type="password" id="login-pass" style="width:100%;margin-bottom:0.75rem" onkeydown="if(event.key==='Enter') hacerLogin()" />
+    <p id="login-error" style="color:#fc8181; font-size:0.8rem; min-height:1rem; margin-bottom:0.5rem"></p>
+    <button onclick="hacerLogin()" style="width:100%">Entrar</button>
+  </div>
+</div>
+
+<div id="app" style="display:none">
+<header>
+  <h1>LocalRAG</h1>
+  <span>Portal de administración</span>
+  <span id="stats-bar" style="margin-left:1rem">—</span>
+  <button onclick="cerrarSesion()" style="margin-left:auto; padding:0.3rem 0.9rem; font-size:0.8rem; background:#2d3748">Salir</button>
+</header>
+
+<main>
+
+  <!-- Proyectos -->
+  <div class="card">
+    <h2>Proyectos</h2>
+
+    <!-- Selector de proyecto existente -->
+    <div style="margin-bottom:1.25rem">
+      <label>Proyectos existentes</label>
+      <div class="row">
+        <select id="proyecto-selector" onchange="verProyecto()">
+          <option value="">— Seleccioná un proyecto —</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Panel de edición del proyecto seleccionado -->
+    <div id="proyecto-detalle" style="display:none; background:#0f1117; border:1px solid #2d3748; border-radius:6px; padding:1rem; margin-bottom:1.25rem">
+      <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.75rem">
+        <strong id="proyecto-detalle-nombre" style="color:#68d391"></strong>
+        <span id="proyecto-detalle-desc" style="color:#4a5568;font-size:0.8rem"></span>
+        <span id="proyecto-detalle-model" style="color:#4a5568;font-size:0.75rem;margin-left:auto;background:#1a202c;padding:2px 8px;border-radius:4px"></span>
+      </div>
+      <label style="font-size:0.75rem">Tags actuales</label>
+      <div id="proyecto-detalle-tags-actuales" style="margin-bottom:0.75rem;min-height:1.5rem"></div>
+      <label style="font-size:0.75rem">Editar tags <span class="hint">(Enter para agregar)</span></label>
+      <div class="tags-input" id="editar-proyecto-tags-container" style="margin-bottom:0.75rem">
+        <input type="text" id="editar-proyecto-tags-input" placeholder="nuevo tag" onkeydown="agregarTag(event,'editar-proyecto')" />
+      </div>
+      <div style="display:flex;gap:0.5rem">
+        <button onclick="guardarProyectoSeleccionado()" style="font-size:0.85rem">Guardar tags</button>
+        <button class="danger" onclick="eliminarProyectoSeleccionado()" style="font-size:0.85rem">Eliminar proyecto</button>
+      </div>
+    </div>
+
+    <!-- Crear nuevo proyecto -->
+    <div style="border-top:1px solid #2d3748; padding-top:1rem">
+      <label style="font-size:0.8rem; color:#718096; margin-bottom:0.75rem; display:block">Crear nuevo proyecto</label>
+      <div class="row">
+        <div>
+          <label>Nombre</label>
+          <input type="text" id="nuevo-proyecto-nombre" placeholder="ej: cliente-patito" />
+        </div>
+        <div>
+          <label>Descripción <span class="hint">(opcional)</span></label>
+          <input type="text" id="nuevo-proyecto-desc" placeholder="ej: Documentos del cliente Patito" />
+        </div>
+        <div>
+          <label>Modelo de embeddings</label>
+          <select id="nuevo-proyecto-model">
+            <option value="">Cargando modelos...</option>
+          </select>
+        </div>
+        <div>
+          <label>Tags <span class="hint">(Enter para agregar)</span></label>
+          <div class="tags-input" id="nuevo-proyecto-tags-container">
+            <input type="text" id="nuevo-proyecto-tags-input" placeholder="ej: redes-sociales" onkeydown="agregarTag(event,'nuevo-proyecto')" />
+          </div>
+        </div>
+        <div class="btn-wrap"><button onclick="crearProyecto()">Crear</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modelos de embeddings -->
+  <div class="card">
+    <h2>Modelos de embeddings</h2>
+    <table id="modelos-tabla">
+      <thead>
+        <tr>
+          <th>Modelo</th>
+          <th>Tamaño</th>
+          <th>Calidad ES</th>
+          <th>Velocidad CPU</th>
+          <th>Descripción</th>
+          <th>Estado</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="modelos-tbody">
+        <tr><td colspan="7" style="color:#4a5568;padding:1rem 0">Cargando...</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Subir archivo -->
+  <div class="card">
+    <h2>Subir documento</h2>
+    <div class="row" style="margin-bottom:0.75rem">
+      <div>
+        <label>Proyecto</label>
+        <select id="file-proyecto" onchange="_mostrarTagsProyecto('file-proyecto','file-proyecto-tags')">
+          <option value="">— Seleccioná un proyecto —</option>
+        </select>
+      </div>
+      <div id="file-proyecto-tags" style="font-size:0.8rem;color:#718096;align-self:flex-end;padding-bottom:0.5rem"></div>
+    </div>
+    <label>Archivo (PDF, TXT, DOCX)</label>
+    <input type="file" id="file-input" accept=".pdf,.txt,.docx" />
+    <div style="margin-top:0.75rem">
+      <button onclick="subirArchivo()">Indexar archivo</button>
+    </div>
+    <div class="result" id="file-result" style="display:none"></div>
+  </div>
+
+  <!-- Crawler -->
+  <div class="card">
+    <h2>Crawl de sitio web</h2>
+    <div class="row" style="margin-bottom:0.75rem">
+      <div>
+        <label>Proyecto</label>
+        <select id="crawl-proyecto" onchange="_mostrarTagsProyecto('crawl-proyecto','crawl-proyecto-tags')">
+          <option value="">— Seleccioná un proyecto —</option>
+        </select>
+      </div>
+      <div id="crawl-proyecto-tags" style="font-size:0.8rem;color:#718096;align-self:flex-end;padding-bottom:0.5rem"></div>
+    </div>
+    <div class="row">
+      <div>
+        <label>URL base</label>
+        <input type="text" id="crawl-url" placeholder="https://ejemplo.com" />
+      </div>
+      <div style="flex:0 0 120px">
+        <label>Profundidad</label>
+        <input type="number" id="crawl-depth" value="2" min="1" max="5" />
+      </div>
+      <div class="btn-wrap"><button onclick="escanearURLs()">Escanear</button></div>
+    </div>
+    <ul id="url-list"></ul>
+    <div style="margin-top:0.75rem; display:flex; gap:0.5rem">
+      <button class="secondary" onclick="seleccionarTodos()">Seleccionar todos</button>
+      <button onclick="descargarSeleccionados()">Indexar seleccionados</button>
+    </div>
+    <div class="result" id="crawl-result" style="display:none"></div>
+  </div>
+
+  <!-- Test query -->
+  <div class="card">
+    <h2>Probar consulta</h2>
+    <div class="row" style="margin-bottom:0.75rem">
+      <div>
+        <label>Filtrar por proyecto <span class="hint">(opcional)</span></label>
+        <select id="query-proyecto" onchange="_mostrarTagsProyecto('query-proyecto','query-proyecto-tags')">
+          <option value="">— Todos los proyectos —</option>
+        </select>
+      </div>
+      <div id="query-proyecto-tags" style="font-size:0.8rem;color:#718096;align-self:flex-end;padding-bottom:0.5rem"></div>
+    </div>
+    <div class="row">
+      <div>
+        <label>Pregunta</label>
+        <input type="text" id="query-input" placeholder="¿Qué dice el documento sobre…?" />
+      </div>
+      <div style="flex:0 0 80px">
+        <label>Resultados</label>
+        <input type="number" id="query-n" value="5" min="1" max="20" />
+      </div>
+      <div class="btn-wrap"><button onclick="hacerQuery()">Consultar</button></div>
+    </div>
+    <div class="result" id="query-result" style="display:none"></div>
+  </div>
+
+  <!-- Documentos indexados -->
+  <div class="card">
+    <h2>Documentos indexados</h2>
+    <div class="filter-bar">
+      <div>
+        <label>Filtrar por proyecto</label>
+        <select id="docs-proyecto-filter" onchange="cargarDocs()">
+          <option value="">— Todos —</option>
+        </select>
+      </div>
+      <div class="btn-wrap" style="display:flex;gap:0.5rem">
+        <button class="secondary" onclick="cargarDocs()">Actualizar lista</button>
+        <button class="danger" onclick="purgarIndice()">Borrar todo</button>
+      </div>
+    </div>
+    <div style="overflow-x:auto">
+      <table>
+        <thead><tr><th>Fuente</th><th>Proyecto</th><th>Tags</th><th></th></tr></thead>
+        <tbody id="docs-table"></tbody>
+      </table>
+    </div>
+  </div>
+
+</main>
+</div><!-- /app -->
+
+<script>
+  const API = "http://localhost:8000";
+  const tagStore = { file: [], crawl: [], query: [] };
+
+  function getToken() { return localStorage.getItem("rag_token"); }
+  function setToken(t) { localStorage.setItem("rag_token", t); }
+
+  async function api(method, path, body) {
+    const opts = { method, headers: {} };
+    const token = getToken();
+    if (token) opts.headers["Authorization"] = `Bearer ${token}`;
+    if (body instanceof FormData) {
+      opts.body = body;
+    } else if (body) {
+      opts.headers["Content-Type"] = "application/json";
+      opts.body = JSON.stringify(body);
+    }
+    const r = await fetch(API + path, opts);
+    if (r.status === 401) { mostrarLogin(); return null; }
+    return r.json();
+  }
+
+  function mostrarLogin() {
+    document.getElementById("login-overlay").style.display = "flex";
+    document.getElementById("app").style.display = "none";
+  }
+
+  function mostrarApp() {
+    document.getElementById("login-overlay").style.display = "none";
+    document.getElementById("app").style.display = "block";
+  }
+
+  async function hacerLogin() {
+    const username = document.getElementById("login-user").value.trim();
+    const password = document.getElementById("login-pass").value;
+    const r = await fetch(`${API}/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    });
+    if (!r.ok) { document.getElementById("login-error").textContent = "Credenciales incorrectas"; return; }
+    const data = await r.json();
+    setToken(data.access_token);
+    mostrarApp();
+    iniciar();
+  }
+
+  function cerrarSesion() {
+    localStorage.removeItem("rag_token");
+    mostrarLogin();
+  }
+
+  function mostrar(id, data) {
+    const el = document.getElementById(id);
+    el.style.display = "block";
+    el.textContent = typeof data === "string" ? data : JSON.stringify(data, null, 2);
+  }
+
+  // ---------- Tags ----------
+  function agregarTag(event, scope) {
+    if (event.key !== "Enter") return;
+    event.preventDefault();
+    const input = document.getElementById(`${scope}-tags-input`);
+    const val = input.value.trim();
+    if (!val || tagStore[scope].includes(val)) { input.value = ""; return; }
+    tagStore[scope].push(val);
+    renderTags(scope);
+    input.value = "";
+  }
+
+  function quitarTag(scope, tag) {
+    tagStore[scope] = tagStore[scope].filter(t => t !== tag);
+    renderTags(scope);
+  }
+
+  function renderTags(scope) {
+    const container = document.getElementById(`${scope}-tags-container`);
+    const input = document.getElementById(`${scope}-tags-input`);
+    [...container.querySelectorAll(".tag")].forEach(t => t.remove());
+    tagStore[scope].forEach(tag => {
+      const el = document.createElement("div");
+      el.className = "tag";
+      el.innerHTML = `${tag} <span onclick="quitarTag('${scope}','${tag}')">×</span>`;
+      container.insertBefore(el, input);
+    });
+  }
+
+  // ---------- Gestión de proyectos ----------
+  tagStore["nuevo-proyecto"] = [];
+
+  async function crearProyecto() {
+    const nombre = document.getElementById("nuevo-proyecto-nombre").value.trim();
+    if (!nombre) return alert("Ingresá un nombre de proyecto");
+    const descripcion = document.getElementById("nuevo-proyecto-desc").value.trim();
+    const tags = tagStore["nuevo-proyecto"];
+    const model = document.getElementById("nuevo-proyecto-model").value;
+    const r = await api("POST", `/proyectos/${encodeURIComponent(nombre)}`, { tags, descripcion, model });
+    if (!r) return;
+    document.getElementById("nuevo-proyecto-nombre").value = "";
+    document.getElementById("nuevo-proyecto-desc").value = "";
+    document.getElementById("nuevo-proyecto-model").value = "paraphrase-multilingual-MiniLM-L12-v2";
+    tagStore["nuevo-proyecto"] = []; renderTags("nuevo-proyecto");
+    iniciar();
+  }
+
+  tagStore["editar-proyecto"] = [];
+
+  async function renderProyectos() {
+    const r = await api("GET", "/proyectos");
+    if (!r) return;
+    const sel = document.getElementById("proyecto-selector");
+    const actual = sel.value;
+    sel.innerHTML = `<option value="">— Seleccioná un proyecto —</option>` +
+      (r.proyectos || []).map(p => `<option value="${p.nombre}">${p.nombre}${p.descripcion ? " — " + p.descripcion : ""}</option>`).join("");
+    sel.value = actual;
+    if (actual) verProyecto();
+    else document.getElementById("proyecto-detalle").style.display = "none";
+  }
+
+  function verProyecto() {
+    const nombre = document.getElementById("proyecto-selector").value;
+    const detalle = document.getElementById("proyecto-detalle");
+    if (!nombre) { detalle.style.display = "none"; return; }
+    const p = _proyectosCache.find(x => x.nombre === nombre);
+    if (!p) { detalle.style.display = "none"; return; }
+    detalle.style.display = "block";
+    document.getElementById("proyecto-detalle-nombre").textContent = p.nombre;
+    document.getElementById("proyecto-detalle-desc").textContent = p.descripcion || "";
+    const modelLabel = p.model === "all-MiniLM-L6-v2" ? "MiniLM L6" : "Multilingual L12";
+    document.getElementById("proyecto-detalle-model").textContent = `modelo: ${modelLabel}`;
+    const tagsHtml = (p.tags || []).map(t => `<span class="badge">${t}</span>`).join("") || "—";
+    document.getElementById("proyecto-detalle-tags-actuales").innerHTML = tagsHtml;
+    tagStore["editar-proyecto"] = [...(p.tags || [])];
+    renderTags("editar-proyecto");
+  }
+
+  async function guardarProyectoSeleccionado() {
+    const nombre = document.getElementById("proyecto-selector").value;
+    if (!nombre) return;
+    const tags = tagStore["editar-proyecto"] || [];
+    const r = await api("PUT", `/proyectos/${encodeURIComponent(nombre)}`, { tags });
+    if (!r) return;
+    iniciar();
+  }
+
+  async function eliminarProyectoSeleccionado() {
+    const nombre = document.getElementById("proyecto-selector").value;
+    if (!nombre) return;
+    if (!confirm(`¿Eliminar el proyecto "${nombre}"? Los documentos indexados no se borran.`)) return;
+    await api("DELETE", `/proyectos/${encodeURIComponent(nombre)}`);
+    document.getElementById("proyecto-selector").value = "";
+    document.getElementById("proyecto-detalle").style.display = "none";
+    iniciar();
+  }
+
+  // ---------- Proyectos (selectores) ----------
+  let _proyectosCache = [];
+
+  function _mostrarTagsProyecto(selectId, labelId) {
+    const nombre = document.getElementById(selectId).value;
+    const el = document.getElementById(labelId);
+    if (!el) return;
+    const p = _proyectosCache.find(x => x.nombre === nombre);
+    if (p && p.tags.length) {
+      el.innerHTML = "Tags: " + p.tags.map(t => `<span class="badge">${t}</span>`).join("");
+    } else {
+      el.innerHTML = nombre ? '<span style="color:#c53030">Sin tags definidos</span>' : "";
+    }
+  }
+
+  async function cargarProyectos() {
+    const r = await api("GET", "/proyectos");
+    if (!r) return;
+    _proyectosCache = r.proyectos || [];
+    const opts = _proyectosCache.map(p => `<option value="${p.nombre}">${p.nombre}${p.descripcion ? " — " + p.descripcion : ""}</option>`).join("");
+
+    ["file-proyecto", "crawl-proyecto"].forEach(id => {
+      const sel = document.getElementById(id);
+      const val = sel.value;
+      sel.innerHTML = `<option value="">— Seleccioná un proyecto —</option>` + opts;
+      sel.value = val;
+    });
+
+    ["query-proyecto", "docs-proyecto-filter"].forEach(id => {
+      const sel = document.getElementById(id);
+      const val = sel.value;
+      sel.innerHTML = `<option value="">— Todos —</option>` + opts;
+      sel.value = val;
+    });
+
+    // selector de la sección proyectos
+    const selProyecto = document.getElementById("proyecto-selector");
+    const valActual = selProyecto.value;
+    selProyecto.innerHTML = `<option value="">— Seleccioná un proyecto —</option>` + opts;
+    selProyecto.value = valActual;
+
+    // mostrar tags del proyecto seleccionado
+    _mostrarTagsProyecto("file-proyecto", "file-proyecto-tags");
+    _mostrarTagsProyecto("crawl-proyecto", "crawl-proyecto-tags");
+    _mostrarTagsProyecto("query-proyecto", "query-proyecto-tags");
+  }
+
+  // ---------- Stats ----------
+  async function cargarStats() {
+    const s = await api("GET", "/stats");
+    if (!s) return;
+    document.getElementById("stats-bar").textContent =
+      `Chunks: ${s.total_chunks} · Proyectos: ${(s.proyectos || []).join(", ") || "ninguno"}`;
+  }
+
+  // ---------- Job polling ----------
+  async function _pollJob(jobId, resultElId, onDone) {
+    mostrar(resultElId, `En cola… (job: ${jobId})`);
+    const intervalo = setInterval(async () => {
+      const j = await api("GET", `/jobs/${jobId}`);
+      if (!j) { clearInterval(intervalo); return; }
+      if (j.status === "processing") {
+        mostrar(resultElId, `Procesando… (job: ${jobId})`);
+      } else if (j.status === "completed") {
+        clearInterval(intervalo);
+        mostrar(resultElId, `Completado: ${JSON.stringify(j.result, null, 2)}`);
+        if (onDone) onDone();
+      } else if (j.status === "failed") {
+        clearInterval(intervalo);
+        mostrar(resultElId, `Error: ${j.error}`);
+      }
+    }, 2000);
+  }
+
+  // ---------- Subir archivo ----------
+  async function subirArchivo() {
+    const file = document.getElementById("file-input").files[0];
+    if (!file) return alert("Seleccioná un archivo primero");
+    const proyecto = document.getElementById("file-proyecto").value;
+    if (!proyecto) return alert("Seleccioná un proyecto primero");
+    const fd = new FormData();
+    fd.append("file", file);
+    fd.append("proyecto", proyecto);
+    mostrar("file-result", "Enviando…");
+    const r = await api("POST", "/ingest/file", fd);
+    if (!r) return;
+    _pollJob(r.job_id, "file-result", iniciar);
+  }
+
+  // ---------- Crawler ----------
+  async function escanearURLs() {
+    const url = document.getElementById("crawl-url").value.trim();
+    const profundidad = parseInt(document.getElementById("crawl-depth").value);
+    if (!url) return alert("Ingresá una URL");
+    mostrar("crawl-result", "Escaneando…");
+    const r = await api("POST", "/ingest/crawl/scan", { url, profundidad });
+    if (!r) return;
+    const lista = document.getElementById("url-list");
+    lista.innerHTML = "";
+    (r.urls_encontradas || []).forEach(u => {
+      const li = document.createElement("li");
+      li.innerHTML = `<input type="checkbox" value="${u}" checked /> <span>${u}</span>`;
+      lista.appendChild(li);
+    });
+    mostrar("crawl-result", `${r.total} URLs encontradas`);
+  }
+
+  function seleccionarTodos() {
+    document.querySelectorAll("#url-list input[type=checkbox]").forEach(c => c.checked = true);
+  }
+
+  async function descargarSeleccionados() {
+    const urls = [...document.querySelectorAll("#url-list input:checked")].map(c => c.value);
+    if (!urls.length) return alert("Seleccioná al menos una URL");
+    const proyecto = document.getElementById("crawl-proyecto").value;
+    if (!proyecto) return alert("Seleccioná un proyecto primero");
+    mostrar("crawl-result", "Enviando…");
+    const r = await api("POST", "/ingest/crawl/download", { urls, proyecto });
+    if (!r) return;
+    _pollJob(r.job_id, "crawl-result", iniciar);
+  }
+
+  // ---------- Query ----------
+  async function hacerQuery() {
+    const query = document.getElementById("query-input").value.trim();
+    if (!query) return alert("Escribí una consulta");
+    const proyecto = document.getElementById("query-proyecto").value || null;
+    const tags = tagStore.query.length ? tagStore.query : null;
+    const n_resultados = parseInt(document.getElementById("query-n").value);
+    const r = await api("POST", "/query", { query, n_resultados, proyecto, tags });
+    if (!r) return;
+    mostrar("query-result", r);
+  }
+
+  // ---------- Documentos ----------
+  async function cargarDocs() {
+    const proyecto = document.getElementById("docs-proyecto-filter").value || null;
+    const url = proyecto ? `/index?proyecto=${encodeURIComponent(proyecto)}` : "/index";
+    const r = await api("GET", url);
+    if (!r) return;
+    const tbody = document.getElementById("docs-table");
+    tbody.innerHTML = "";
+    (r.documentos || []).forEach(d => {
+      const tags = Array.isArray(d.tags) ? d.tags.map(t => `<span class="badge">${t}</span>`).join("") : "";
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${d.fuente}</td>
+        <td><span class="badge" style="color:#68d391">${d.proyecto || "—"}</span></td>
+        <td>${tags || "—"}</td>
+        <td><button class="danger" onclick="eliminarDoc('${d.fuente}', this)">Eliminar</button></td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  async function purgarIndice() {
+    const proyecto = document.getElementById("docs-proyecto-filter").value || null;
+    const msg = proyecto
+      ? `¿Eliminar TODOS los documentos del proyecto "${proyecto}"?`
+      : "¿Eliminar TODO el índice? Esta acción no se puede deshacer.";
+    if (!confirm(msg)) return;
+    if (!confirm("¿Estás seguro? Se perderán todos los datos indexados.")) return;
+    const url = proyecto ? `/purgar?proyecto=${encodeURIComponent(proyecto)}` : "/purgar";
+    await api("DELETE", url);
+    iniciar();
+  }
+
+  async function eliminarDoc(fuente, btn) {
+    if (!confirm(`¿Eliminar "${fuente}" del índice?`)) return;
+    btn.disabled = true;
+    btn.textContent = "Eliminando…";
+    await api("DELETE", `/index/${encodeURIComponent(fuente)}`);
+    iniciar();
+  }
+
+  async function iniciar() {
+    await cargarProyectos();
+    await renderProyectos();
+    await cargarStats();
+    await cargarDocs();
+    await renderModelos();
+  }
+
+  // ---------- Modelos ----------
+  let _modelosPolling = null;
+
+  async function renderModelos() {
+    const r = await api("GET", "/modelos");
+    if (!r) return;
+    const modelos = r.modelos;
+
+    // Poblar select de nuevo proyecto con modelos instalados
+    const sel = document.getElementById("nuevo-proyecto-model");
+    const valorActual = sel.value;
+    sel.innerHTML = "";
+    modelos.filter(m => m.estado === "instalado").forEach(m => {
+      const opt = document.createElement("option");
+      opt.value = m.id;
+      opt.textContent = `${m.display} — ${m.calidad_es} calidad, ${m.velocidad_cpu}`;
+      if (m.id === "paraphrase-multilingual-MiniLM-L12-v2") opt.selected = true;
+      sel.appendChild(opt);
+    });
+    if (sel.options.length === 0) {
+      sel.innerHTML = '<option value="">Sin modelos instalados</option>';
+    } else if (valorActual) {
+      sel.value = valorActual;
+    }
+
+    // Renderizar tabla
+    const tbody = document.getElementById("modelos-tbody");
+    tbody.innerHTML = "";
+    const hayInstalando = modelos.some(m => m.estado === "instalando");
+
+    modelos.forEach(m => {
+      const estadoClass = `estado-${m.estado}`;
+      const estadoLabel = m.estado === "instalado" ? "Instalado" : m.estado === "instalando" ? "Instalando..." : "Disponible";
+      const btnHtml = m.estado === "instalado"
+        ? `<button class="danger" onclick="desinstalarModelo('${m.id}')">Desinstalar</button>`
+        : m.estado === "instalando"
+        ? `<button disabled>Instalando...</button>`
+        : `<button class="secondary" onclick="instalarModelo('${m.id}')">Instalar</button>`;
+
+      tbody.innerHTML += `<tr>
+        <td><strong>${m.display}</strong></td>
+        <td>${m.tamanio}</td>
+        <td>${m.calidad_es}</td>
+        <td>${m.velocidad_cpu}</td>
+        <td style="color:#718096;font-size:0.8rem">${m.descripcion}</td>
+        <td><span class="estado-badge ${estadoClass}">${estadoLabel}</span></td>
+        <td>${btnHtml}</td>
+      </tr>`;
+    });
+
+    // Polling mientras haya modelos instalando
+    if (hayInstalando && !_modelosPolling) {
+      _modelosPolling = setInterval(async () => {
+        await renderModelos();
+        const r2 = await api("GET", "/modelos");
+        if (r2 && !r2.modelos.some(m => m.estado === "instalando")) {
+          clearInterval(_modelosPolling);
+          _modelosPolling = null;
+        }
+      }, 3000);
+    } else if (!hayInstalando && _modelosPolling) {
+      clearInterval(_modelosPolling);
+      _modelosPolling = null;
+    }
+  }
+
+  async function instalarModelo(modelId) {
+    await api("POST", `/modelos/${encodeURIComponent(modelId)}/instalar`);
+    await renderModelos();
+  }
+
+  async function desinstalarModelo(modelId) {
+    if (!confirm(`¿Desinstalar el modelo "${modelId}"? Los proyectos que lo usan dejarán de funcionar.`)) return;
+    const r = await api("DELETE", `/modelos/${encodeURIComponent(modelId)}`);
+    if (r) await renderModelos();
+  }
+
+  if (getToken()) { mostrarApp(); iniciar(); }
+  else { mostrarLogin(); }
+</script>
+</body>
+</html>
